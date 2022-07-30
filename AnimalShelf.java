@@ -4,63 +4,63 @@ import java.util.LinkedList;
 
 class AnimalShelf {
 
-    LinkedList<int[]> queueCat;
-    LinkedList<int[]> queueDog;
+    LinkedList<int[]> Cat;
+    LinkedList<int[]> Dog;
 
     public AnimalShelf() {
-        queueCat = new LinkedList<>();
-        queueDog = new LinkedList<>();
+        Cat = new LinkedList<>();
+        Dog = new LinkedList<>();
     }
 
     public void enqueue(int[] animal) {
-        // ÅĞ¶ÏÖÖÀàºóÈë¶Ó
+        // åˆ¤æ–­ç§ç±»åå…¥é˜Ÿ
         if (animal[1] == 0) {
-            queueCat.addLast(animal);
+            Cat.addLast(animal);
         } else if (animal[1] == 1) {
-            queueDog.addLast(animal);
+            Dog.addLast(animal);
         }
     }
 
-    // ÌôÑ¡ËùÓĞ¶¯ÎïÖĞ×îÀÏµÄ
+    // æŒ‘é€‰æ‰€æœ‰åŠ¨ç‰©ä¸­æœ€è€çš„
     public int[] dequeueAny() {
-        // È¡³öcatµÄ¶ÓÊ×£¬ÅĞ¿ÕÔòÖ±½Ó·µ»Ø
+        // å–å‡ºcatçš„é˜Ÿé¦–ï¼Œåˆ¤ç©ºåˆ™ç›´æ¥è¿”å›
         int[] headCat;
-        if (!queueCat.isEmpty()) {
-            headCat = queueCat.getFirst();
-        } else if (!queueDog.isEmpty()) {
-            // µ±Ã¨¶ÓÁĞÎŞÃ¨Ê±£¬Ö±½Ó½«¹·¶ÓÁĞµÄµÚÒ»¸ö³ö¶Ó
+        if (!Cat.isEmpty()) {
+            headCat = Cat.getFirst();
+        } else if (!Dog.isEmpty()) {
+            // å½“çŒ«é˜Ÿåˆ—æ— çŒ«æ—¶ï¼Œç›´æ¥å°†ç‹—é˜Ÿåˆ—çš„ç¬¬ä¸€ä¸ªå‡ºé˜Ÿ
             return queueDog.removeFirst();
         } else {
-            // ´ú±íÃ¨¹·¶ÓÁĞÖĞÎŞÈÎºÎÃ¨¹·
+            // ä»£è¡¨çŒ«ç‹—é˜Ÿåˆ—ä¸­æ— ä»»ä½•çŒ«ç‹—
             return new int[]{-1,-1};
         }
-        // È¡³ödogµÄ¶ÓÊ×£¬ÅĞ¿ÕÔòÖ±½Ó·µ»Ø
+        // å–å‡ºdogçš„é˜Ÿé¦–ï¼Œåˆ¤ç©ºåˆ™ç›´æ¥è¿”å›
         int[] headDog;
-        if (!queueDog.isEmpty()) {
-            headDog = queueDog.getFirst();
+        if (!Dog.isEmpty()) {
+            headDog = Dog.getFirst();
         } else {
-            // µ±¹·¶ÓÁĞÎŞ¹·Ê±£¬Ö±½Ó½«Ã¨¶ÓÁĞµÄµÚÒ»¸ö³ö¶Ó
-            return queueCat.removeFirst();
+            // å½“ç‹—é˜Ÿåˆ—æ— ç‹—æ—¶ï¼Œç›´æ¥å°†çŒ«é˜Ÿåˆ—çš„ç¬¬ä¸€ä¸ªå‡ºé˜Ÿ
+            return Cat.removeFirst();
         }
-        // µ±Í¬Ê±¶¼ÓĞÃ¨¹·Ê± ±È½Ïºó·µ»Ø ÅĞ¶ÏÃ¨¹·ÖĞË­±È½ÏÀÏ
+        // å½“åŒæ—¶éƒ½æœ‰çŒ«ç‹—æ—¶ æ¯”è¾ƒåè¿”å› åˆ¤æ–­çŒ«ç‹—ä¸­è°æ¯”è¾ƒè€
         if (headCat[0]<=headDog[0]) {
-            return queueCat.removeFirst();
+            return Cat.removeFirst();
         } else {
-            return queueDog.removeFirst();
+            return Dog.removeFirst();
         }
     }
-    // ÌôÑ¡¹·
+    // æŒ‘é€‰ç‹—
     public int[] dequeueDog() {
-        if (!queueDog.isEmpty()) {
-            return queueDog.removeFirst();
+        if (!Dog.isEmpty()) {
+            return Dog.removeFirst();
         } else {
             return new int[]{-1,-1};
         }
     }
-    // ÌôÑ¡Ã¨
+    // æŒ‘é€‰çŒ«
     public int[] dequeueCat() {
-        if (!queueCat.isEmpty()) {
-            return queueCat.removeFirst();
+        if (!Cat.isEmpty()) {
+            return Cat.removeFirst();
         } else {
             return new int[]{-1,-1};
         }
